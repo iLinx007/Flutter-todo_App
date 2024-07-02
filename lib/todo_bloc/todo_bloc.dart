@@ -38,15 +38,41 @@ class TodoBloc extends HydratedBloc<TodoEvent, TodoState> {
     }
   }
 
+  void _onRemoveTodo(
+    RemoveTodo event,
+    Emitter<TodoState> emit,
+  ) {
+    emit(state.copyWith(status: TodoStatus.loading));
+
+    try {
+      state.todos.remove(event.todo);
+      emit(state.copyWith(todos: state.todos, status: TodoStatus.success));
+    } catch (e) {
+      emit(state.copyWith(status: TodoStatus.error));
+    }
+  }
+
+  void _onAlterTodo(
+    AlterTodo event,
+    Emitter<TodoState> emit,
+  ) {
+    emit(state.copyWith(status: TodoStatus.loading));
+
+    try {
+      state.todos[event.index].isDone = !state.todos[event.index].isDone;
+      emit(state.copyWith(todos: state.todos, status: TodoStatus.success));
+    } catch (e) {
+      emit(state.copyWith(status: TodoStatus.error));
+    }
+  }
+
   @override
   TodoState? fromJson(Map<String, dynamic> json) {
-    // TODO: implement fromJson
-    throw UnimplementedError();
+    return TodoState.fromJson(json);
   }
 
   @override
   Map<String, dynamic>? toJson(TodoState state) {
-    // TODO: implement toJson
-    throw UnimplementedError();
+    return state.toJson();
   }
 }

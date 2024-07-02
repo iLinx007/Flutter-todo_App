@@ -28,7 +28,7 @@ class RemoveTodo extends TodoEvent {
 }
 
 class AlterTodo extends TodoEvent {
-  final Todo index;
+  final int index;
 
   const AlterTodo(this.index);
 
