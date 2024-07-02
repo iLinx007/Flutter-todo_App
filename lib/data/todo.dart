@@ -17,7 +17,7 @@ class Todo {
     );
   }
 
-  factory Todo.fromJason(Map<String, dynamic> json) {
+  factory Todo.fromJson(Map<String, dynamic> json) {
     return Todo(
         title: json['title'],
         subtitle: json['subtitle'],
