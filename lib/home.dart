@@ -35,7 +35,92 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.surface,
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showDialog(
+              context: context,
+              builder: (context) {
+                TextEditingController controller1 = TextEditingController();
+                TextEditingController controller2 = TextEditingController();
+                return AlertDialog(
+                  title: const Text("Add New Task"),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      TextField(
+                        controller: controller1,
+                        cursorColor: Theme.of(context).colorScheme.secondary,
+                        decoration: InputDecoration(
+                            hintText: "Task title...",
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                )),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: const BorderSide(
+                                  color: Colors.grey,
+                                ))),
+                      ),
+                      const SizedBox(
+                        height: 10,
+                      ),
+                      TextField(
+                        controller: controller2,
+                        cursorColor: Theme.of(context).colorScheme.secondary,
+                        decoration: InputDecoration(
+                            hintText: "Task Description...",
+                            focusedBorder: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary,
+                                )),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: const BorderSide(
+                                  color: Colors.grey,
+                                ))),
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    Padding(
+                      padding: const EdgeInsets.all(15),
+                      child: TextButton(
+                        onPressed: () {
+                          addTodo(Todo(
+                            title: controller1.text,
+                            subtitle: controller2.text,
+                          ));
+                          controller1.text = '';
+                          controller2.text = '';
+                          Navigator.pop(context);
+                        },
+                        style: TextButton.styleFrom(
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                              color: Theme.of(context).colorScheme.secondary,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          foregroundColor:
+                              Theme.of(context).colorScheme.secondary,
+                        ),
+                        child: SizedBox(
+                          width: MediaQuery.of(context).size.width,
+                          child: const Icon(
+                            CupertinoIcons.check_mark,
+                            color: Colors.green,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              });
+        },
         backgroundColor: Theme.of(context).colorScheme.primary,
         child: const Icon(
           CupertinoIcons.add,
