@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_todo_app/data/todo.dart';
+import 'package:flutter_todo_app/todo_bloc/todo_bloc.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -9,6 +12,24 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  addTodo(Todo todo) {
+    context.read<TodoBloc>().add(AddTodo(
+          todo,
+        ));
+  }
+
+  removeTodo(Todo todo) {
+    context.read<TodoBloc>().add(RemoveTodo(
+          todo,
+        ));
+  }
+
+  alterTodo(int index) {
+    context.read<TodoBloc>().add(AlterTodo(
+          index,
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +57,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: const Padding(padding: EdgeInsets.all(8.0)),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: BlocBuilder<TodoBloc, TodoState>(builder: (context, state) {
+          if (state.status == TodoStatus.success) {
+            return Container();
+          } else if (state.status == TodoStatus.initial) {
+            return const Center(child: CircularProgressIndicator());
+          } else {
+            return Container();
+          }
+        }),
+      ),
     );
   }
 }
