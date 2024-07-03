@@ -17,8 +17,23 @@ class _HomeScreenState extends State<HomeScreen> {
         onPressed: () {},
         backgroundColor: Theme.of(context).colorScheme.primary,
         child: const Icon(
-          CupertinoIcons.add_circled,
+          CupertinoIcons.add,
           color: Colors.black,
+        ),
+      ),
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        elevation: 0,
+        leading: const Icon(
+          CupertinoIcons.check_mark_circled,
+          color: Colors.white,
+        ),
+        title: const Text(
+          "My Todo App",
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );
