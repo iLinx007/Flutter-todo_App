@@ -176,6 +176,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       title: Text(
                         state.todos[i].title
                       ),
+                      trailing: Checkbox(
+                        value: state.todos[i].isDone,
+                        activeColor: Theme.of(context).colorScheme.onPrimary,
+                        onChanged: (value) {
+                          alterTodo(i);
+                        },
+                      ),
                     ),
                   ),
                 )
