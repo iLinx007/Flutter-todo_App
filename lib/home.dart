@@ -24,18 +24,19 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.primary,
         elevation: 0,
-        leading: const Icon(
+        leading: Icon(
           CupertinoIcons.check_mark_circled,
-          color: Colors.white,
+          color: Theme.of(context).colorScheme.onPrimary,
         ),
-        title: const Text(
+        title: Text(
           "My Todo App",
           style: TextStyle(
-            color: Colors.black,
+            color: Theme.of(context).colorScheme.onPrimary,
             fontWeight: FontWeight.bold,
           ),
         ),
       ),
+      body: const Padding(padding: EdgeInsets.all(8.0)),
     );
   }
 }

@@ -26,9 +26,9 @@ class MainApp extends StatelessWidget {
             surface: Color.fromARGB(255, 180, 174, 174),
             onSurface: Colors.black,
             primary: Colors.blue,
-            onPrimary: Colors.blueAccent,
+            onPrimary: Colors.black,
             secondary: Colors.lightGreen,
-            onSecondary: Colors.lightGreenAccent),
+            onSecondary: Colors.black),
       ),
       home: BlocProvider<TodoBloc>(
         create: (context) => TodoBloc()..add(TodoStarted()),
