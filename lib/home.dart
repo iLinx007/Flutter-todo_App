@@ -151,7 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 itemCount: state.todos.length,
                 itemBuilder: (context, int i) {
                   return Card(
-                    color: Theme.of(context).colorScheme.onPrimary,
+                    color: Theme.of(context).colorScheme.primary,
                     elevation: 1,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
@@ -172,10 +172,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                       child: ListTile(
-                        title: Text(state.todos[i].title),
+                        title: Text(
+                          state.todos[i].title,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        subtitle: Text(state.todos[i].subtitle),
                         trailing: Checkbox(
                           value: state.todos[i].isDone,
-                          activeColor: Theme.of(context).colorScheme.onPrimary,
+                          activeColor: Theme.of(context).colorScheme.secondary,
                           onChanged: (value) {
                             alterTodo(i);
                           },
